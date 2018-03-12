@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { setCurTitle } from '../redux/actionLoadData.js';
+import LiPos from './listPos.js';
 
 
 class DeckList extends React.Component {
@@ -14,24 +14,16 @@ class DeckList extends React.Component {
 
 
                     <ScrollView>
+                        {(this.props.decks.length == 0) ? (
 
-                        <Text>{this.props.length}</Text>
-                        {this.props.decks.map((item)=>(
-<View key={item.title}>
-    <Text style={styles.deckListLiText}>{item.title}</Text>
-                            <TouchableOpacity style={styles.deckListLi} onPress={()=>{
+                            <Text style={styles.deckListLiText}>No decks, let's add some</Text>
 
-                                this.props.setTitle(item.title);
-                                this.props.navigation.navigate('DeckPreview');
-
-                            }}>
-
-                                <Text style={styles.deckListLiText}>{item.title}</Text>
-                                <Text style={styles.deckListLiCardsNumber}>{item.questions.length} Cards</Text>
-
-
-                            </TouchableOpacity></View>
-                        ))}
+                        ):(
+                        this.props.decks.map((item)=>(
+                            <View key={item.title} >
+                                <LiPos titleProps={item.title} cardsProps={item.questions} navigation={this.props.navigation}/>
+                            </View>
+                        )))}
                         </ScrollView>
 
                 </View>

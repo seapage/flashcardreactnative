@@ -50,9 +50,13 @@ class NewDeck extends React.Component {
 
                             </View>
                             <View style={styles.jt}>
-                                <TouchableOpacity style={styles.button} onPress={()=>{this.saveTitle()}}>
+                                <TouchableOpacity style={styles.button} onPress={()=>{
 
-                                    <Text style={styles.buttonText}>Create new deck {this.state.text}</Text>
+                                    this.props.decks.map((item)=>{console.log("poz"+item.title)})
+
+                                    this.saveTitle()}}>
+
+                                    <Text style={styles.buttonText}>Create new deck</Text>
 
                                 </TouchableOpacity>
 
@@ -117,9 +121,9 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state, ownProps)=>{
-    return{
-
-    }
+    return ({
+        decks: state.decks || []
+    });
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

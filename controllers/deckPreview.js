@@ -5,9 +5,6 @@ import { HeaderBackButton } from 'react-navigation';
 import { startQuiz } from '../redux/actionLoadData.js';
 class DeckPreview extends React.Component {
 
-    constructor(props){
-        super(props);
-    }
 
     static navigationOptions = { title: "Quiz"
     };
@@ -23,26 +20,26 @@ class DeckPreview extends React.Component {
                     <KeyboardAvoidingView style={styles.container}>
                         <View style={styles.jd}>
 
-                            <Text style={styles.header}>{this.props.title}{this.props.titled}</Text>
-                            <Text style={styles.headerCard}>Cards: {this.props.deck.questions.length}</Text>
+                            <Text style={styles.header}>{this.props.title}</Text>
+                            <Text style={styles.headerCard}>Cards: {this.props.curCard.length}</Text>
 
                         </View>
                         <View style={styles.jt}>
                             <TouchableOpacity style={styles.button}  onPress={()=>{
 
 
-                                this.props.navigation.navigate('AddCard',{ title: this.props.deck.title })
+                                this.props.navigation.navigate('AddCard',{ title: this.props.title })
 
                             }}>
 
                                 <Text style={styles.buttonText}>Add Card</Text>
 
                             </TouchableOpacity>
-                            {(this.props.deck.questions.length!=0 &&
+                            {(this.props.curCard.length!=0 &&
                             <TouchableOpacity style={styles.button} onPress={()=>{
 
 
-                                this.props.startQuiz(this.props.deck.title, this.props.deck.questions.length);
+                                this.props.startQuiz(this.props.title, this.props.curCard.length);
                                 this.props.navigation.navigate('Quiz')
 
 
@@ -119,20 +116,12 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state, ownProps)=>{
-    deckToReturn={title: "",questions: []};
-    state.decks.map((item)=>{
-
-        if(item.title = state.curtitle)
-            deckToReturn=item;
-
-    })
 
 
     return{
         title: state.curtitle,
-        deck: deckToReturn,
+        curCard: state.curCards || [],
         navigate: ownProps.navigation,
-        titled: ownProps.name,
     }
 };
 

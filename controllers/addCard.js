@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, AppRegistry, View, TextInput, TouchableOpacity,KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, AppRegistry, View, TextInput, TouchableOpacity,KeyboardAvoidingView , ScrollView} from 'react-native';
 import { connect } from 'react-redux';
 import { saveCard } from '../redux/actionLoadData.js';
 import {Keyboard} from 'react-native'
@@ -29,7 +29,7 @@ class AddCard extends React.Component {
             textanswer: ""
 
         })
-        this.props.navigation.navigate('DeckPreview',{ title: this.props.navigation.state.params.title })
+        this.props.navigation.navigate('DeckPreview')
     }
 
     render() {
@@ -43,6 +43,7 @@ class AddCard extends React.Component {
                                 <Text style={styles.header}>Add card to list</Text>
 
                             </View>
+                            <ScrollView>
                             <View style={styles.jt}>
 
                                 <TextInput
@@ -62,11 +63,13 @@ class AddCard extends React.Component {
                                     value={this.state.textanswer}
                                 />
 
+
                             </View>
+                            </ScrollView>
                             <View style={styles.jt}>
                                 <TouchableOpacity style={styles.buttonn} onPress={()=>{this.saveCard()}}>
 
-                                    <Text style={styles.buttonText}>Create new card {this.props.title}</Text>
+                                    <Text style={styles.buttonText}>Create new card</Text>
 
                                 </TouchableOpacity>
 
@@ -134,7 +137,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state, ownProps)=>{
     return{
-        title: ownProps.navigation.state.params.title
+        title: state.curtitle,
+        curCard: state.curCard || [],
     }
 };
 

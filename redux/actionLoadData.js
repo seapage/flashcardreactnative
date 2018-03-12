@@ -9,14 +9,15 @@ export const loadData = (data) => {
 export const saveDeck = (title) => {
     return {
         type: 'SaveDeck',
-        title
+        titleVar: title
     }
 }
 
-export const setCurTitle = (title) => {
+export const setCurTitle = (title, cards) => {
     return {
         type: 'setCurTitle',
-        title: title
+        title: title,
+        actualCards: cards
     }
 }
 
@@ -60,32 +61,7 @@ export const corA = () => {
 export const getData = () => dispatch => {
 
 
-    // AsyncStorage.getAllKeys((key))
-    //
-    //
-    // ((err, keys) => {
-    //     AsyncStorage.multiGet(keys, (err, stores) => {
-    //         var obj = [];
-    //         stores.map((result, i, store) => {
-    //             // get at each store's key/value so you can work with it
-    //             let key = store[i][0];
-    //             let value = JSON.parse(store[i][1]);
-    //             obj[key]=value
-    //         });
-    //         dispatch(loadData(obj))
-    //
-    //
-    //     });
-    // });
+    AsyncStorage.getItem("ourstate").fetch((response)=>{dispatch(loadData(JSON.parse(response)))})
 
-    AsyncStorage.getAllKeys((err, keys) => {
-        AsyncStorage.multiGet(keys, (err, stores) => {
-            let arr = [];
-            stores.map((result, i, store) => {
-                // get at each store's key/value so you can work with it
-                arr[store[i][0]]=store[i][1];
-            });
-            dispatch(loadData(arr))
-        });
-    });
+
 }

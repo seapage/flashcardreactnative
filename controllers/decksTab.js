@@ -10,7 +10,6 @@ import { StackNavigator } from 'react-navigation';
 
 const Stack = StackNavigator({
     DeckList: {
-        routeName: 'DeckList',
         screen: DeckList,
     },
     DeckPreview: {

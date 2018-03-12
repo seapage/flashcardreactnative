@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, AppRegistry, View, TextInput, TouchableOpacity,KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, AppRegistry, View, TextInput, TouchableOpacity,KeyboardAvoidingView, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { HeaderBackButton } from 'react-navigation';
 import { resetQuiz, wrongAnswer, correctAnswer, corA } from '../redux/actionLoadData.js';
@@ -34,16 +34,17 @@ class Quiz extends React.Component {
                 </View>
                 <View style={styles.colA}>
                     <KeyboardAvoidingView style={styles.container}>
+                        <ScrollView>
                         <View style={styles.jd}>
 
                             {(this.props.question[(this.props.score.actualQuestion-1)])?(
-
-                                this.state.showAnswer?(
-                                    <Text style={styles.answer}>{this.props.question[(this.props.score.actualQuestion-1)].answer}</Text>
+                                <View style={styles.tekstQue}>
+                                    {this.state.showAnswer?(
+                                    <Text style={styles.answer}>Answer: {this.props.question[(this.props.score.actualQuestion-1)].answer}</Text>
                                 ):(
-                                    <Text style={styles.ask}>{this.props.question[(this.props.score.actualQuestion-1)].question}??</Text>
-                                )
-
+                                    <Text style={styles.ask}>Question: {this.props.question[(this.props.score.actualQuestion-1)].question}??</Text>
+                                )}
+                                </View>
                             ):(<Text>""</Text>)}
                             <TouchableOpacity style={styles.button}  onPress={()=>{
 
@@ -93,6 +94,7 @@ class Quiz extends React.Component {
 
                         </View>
                         <View style={styles.jt}></View>
+                            </ScrollView>
                     </KeyboardAvoidingView>
                 </View>
                 <View style={styles.colB}></View>
@@ -171,6 +173,11 @@ const styles = StyleSheet.create({
     },
     jd:{
         flex: 2,
+        justifyContent: 'center',
+    },
+    tekstQue:{
+        minHeight: 35,
+        paddingTop: 20,
         justifyContent: 'center',
     }
 });

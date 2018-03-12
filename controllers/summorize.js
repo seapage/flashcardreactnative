@@ -7,14 +7,16 @@ import { resetQuiz } from '../redux/actionLoadData.js';
 
 class Summ extends React.Component {
 
-    static navigationOptions = { title: "Quiz",
-        headerLeft: false,
-    };
+    static navigationOptions = ({ navigation, screenProps }) => ({
+    title:  'Quiz',
+    headerLeft:  <TouchableOpacity onPress={ () => {navigation.navigate('DeckList') } } ><Text>Deck lists</Text></TouchableOpacity>,
+        });
 
-    saveTitle(){
-    }
+
 
     render() {
+
+
         return (
             <View style={styles.body}>
                 <View style={styles.colB}></View>
@@ -22,7 +24,7 @@ class Summ extends React.Component {
                     <KeyboardAvoidingView style={styles.container}>
                         <View style={styles.jd}>
 
-                            <Text style={styles.header}>{(this.props.score.points/this.props.score.questions*100).toFixed(2)}</Text>
+                            <Text style={styles.header}>{(this.props.score.points/this.props.score.questions*100).toFixed(2)} %</Text>
                             <Text style={styles.header}>You answer correctly: {this.props.score.points} in {this.props.score.questions} questions</Text>
 
                         </View>

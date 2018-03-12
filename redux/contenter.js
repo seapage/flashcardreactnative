@@ -1,19 +1,16 @@
 import {AsyncStorage} from 'react-native';
-function StorageBase (state = {curtitle: "",decks: [], quiz: {points: 0, questions: 1, actualQuestion: 1, title: ""}}, action) {
+function StorageBase (state = {curtitle: "", curCards:[], decks: [], quiz: {points: 0, questions: 1, actualQuestion: 1, title: ""}}, action) {
     switch(action.type){
         case "LoadData":
             return{
-                ...state,
-                // quiz: {points: 0, questions: 0, actualQuestion: 1, title: ""},
-                // decks: action.data || []
+                ...state
             }
             break;
         case "setCurTitle":
             return{
                 ...state,
-                curtitle: action.title
-                // quiz: {points: 0, questions: 0, actualQuestion: 1, title: ""},
-                // decks: action.data || []
+                curtitle: action.title,
+                curCards: action.actualCards
             }
             break;
         case "ResetQuiz":
@@ -56,51 +53,58 @@ function StorageBase (state = {curtitle: "",decks: [], quiz: {points: 0, questio
             }
             break;
         case "SaveDeck":
-            // AsyncStorage.setItem(action.title,JSON.stringify({
-            //     title: action.title,
-            //     questions: [
-            //     ]
-            // }));
 
-            return {
-                ...state,
-                decks: [...state.decks,
-                    {
-                        title: action.title,
-                        questions: [
-                        ]
-                    }
+
+            var array = state.decks.map((item)=>{
+
+                console.log("state "+item.title);
+                return item;
+            });
+            array.push({
+                title: action.titleVar,
+                questions: [
                 ]
+            })
+
+            let tempState = {
+                ...state,
+                decks: array
             }
+            AsyncStorage.setItem("ourstate",JSON.stringify(tempState));
+
+            return tempState;
+
             break;
         case "SaveCard":
-            // AsyncStorage.setItem(action.title,JSON.stringify({
-            //     title: action.title,
-            //     questions: [
-            //         {
-            //             question: action.question,
-            //             answer: action.answer
-            //         }
-            //     ]
-            // }));
-
-            return {
+            let tempStatea = {
                 ...state,
+                curCards:[
+                    ...state.curCards,
+                    {
+                        question: action.question,
+                        answer: action.answer
+                    }
+                ],
                 decks: state.decks.map((item)=>{
-                            if(item.title === action.title)
-                                return{
-                                    title: item.title,
-                                    questions: [
-                                        ...item.questions,
-                                        {
-                                            question: action.question,
-                                            answer: action.answer
-                                        }
-                                    ]
+                    if(item.title === action.title)
+                        return{
+                            title: item.title,
+                            questions: [
+                                ...item.questions,
+                                {
+                                    question: action.question,
+                                    answer: action.answer
                                 }
-                            return item;
-                        })
+                            ]
+                        }
+                    return item;
+                })
             }
+            AsyncStorage.setItem("ourstate",JSON.stringify({
+                tempStatea
+            }));
+
+            return tempStatea;
             break;
         default:
             return state;
