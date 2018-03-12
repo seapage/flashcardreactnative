@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "My app",
+    "slug": "my-app",
+    "sdkVersion": "25.0.0",
+    "privacy": "public",
+    "ios": {
+      "bundleIdentifier": "org.test"
+    },
+    "android": {
+      "package": "org.test"
+    }
+  }
+}
