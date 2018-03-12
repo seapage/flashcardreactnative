@@ -1,3 +1,12 @@
+To get application you need make:
+`npm install` - to install all neeed components
+
+later you can emulate aplication by:
+
+`npm run ios` - emulating ios (Computer with OSX needed)
+`npm run android` - emulating androidnp
+
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
