@@ -19,6 +19,12 @@ function StorageBase (state = {curtitle: "", curCards:[], decks: [], quiz: {poin
                 quiz: {points: 0, questions: 0, actualQuestion: 1, title: ""}
             }
             break;
+        case "ResetQuizD":
+            return{
+                ...state,
+                quiz: {points: 0, questions: state.quiz.questions, actualQuestion: 1, title: ""}
+            }
+            break;
         case "startQuiz":
             return{
                 ...state,

@@ -3,7 +3,7 @@ import { StyleSheet, Text, AppRegistry, View, TextInput, TouchableOpacity,Keyboa
 import { connect } from 'react-redux';
 import { HeaderBackButton } from 'react-navigation';
 import {Keyboard} from 'react-native'
-import { resetQuiz } from '../redux/actionLoadData.js';
+import { resetQuizD } from '../redux/actionLoadData.js';
 
 class Summ extends React.Component {
 
@@ -29,7 +29,7 @@ class Summ extends React.Component {
 
                         </View>
                         <View style={styles.jt}>
-                            <TouchableOpacity style={styles.button} onPress={() =>{this.props.resetQuiz(); this.props.navigation.navigate('DeckPreview')}}>
+                            <TouchableOpacity style={styles.button} onPress={() =>{this.props.resetQuizD(); this.props.navigation.navigate('Quiz')}}>
 
                                 <Text style={styles.buttonText}>Reset quiz</Text>
 
@@ -110,6 +110,7 @@ const mapStateToProps = (state, ownProps)=>{
 const mapDispatchToProps = (dispatch, ownProps) => {
     return{
         resetQuiz: ()=>dispatch(resetQuiz()),
+        resetQuizD: ()=>dispatch(resetQuizD()),
     }
 }
 

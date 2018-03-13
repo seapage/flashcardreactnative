@@ -52,6 +52,11 @@ export const resetQuiz = () => {
         type: 'ResetQuiz'
     }
 }
+export const resetQuizD = () => {
+    return {
+        type: 'ResetQuizD'
+    }
+}
 export const corA = () => {
     return {
         type: 'corA'
