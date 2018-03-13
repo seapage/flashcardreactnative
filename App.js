@@ -17,7 +17,33 @@ import {loadData}from "./redux/actionLoadData.js";
 import { Provider } from 'react-redux';
 
 
+//test
 
+
+import DeckList from './controllers/deckList.js';
+import DeckPreview from './controllers/deckPreview.js';
+import Quiz from './controllers/quiz.js';
+import Summ from './controllers/summorize.js';
+import AddCard from './controllers/addCard.js';
+import { StackNavigator } from 'react-navigation';
+
+const Stack = StackNavigator({
+    DeckList: {
+        screen: DeckList,
+    },
+    DeckPreview: {
+        screen: DeckPreview
+    },
+    AddCard: {
+        screen: AddCard
+    },
+    Quiz: {
+        screen: Quiz
+    },
+    Summ: {
+        screen: Summ
+    }
+})
 
 
 
@@ -34,7 +60,7 @@ store.dispatch(loadData());
 const Tabulator = TabNavigator({
     DeckTab: {
           routeName: 'DeckTab',
-          screen: DeckTab,
+          screen: Stack,
           navigationOptions: {
             tabBarLabel: 'Decks list'
           }

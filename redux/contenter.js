@@ -57,7 +57,6 @@ function StorageBase (state = {curtitle: "", curCards:[], decks: [], quiz: {poin
 
             var array = state.decks.map((item)=>{
 
-                console.log("state "+item.title);
                 return item;
             });
             array.push({
@@ -68,7 +67,9 @@ function StorageBase (state = {curtitle: "", curCards:[], decks: [], quiz: {poin
 
             let tempState = {
                 ...state,
-                decks: array
+                curtitle: action.titleVar,
+                decks: array,
+                curCards: []
             }
             AsyncStorage.setItem("ourstate",JSON.stringify(tempState));
 

@@ -29,7 +29,12 @@ class Summ extends React.Component {
 
                         </View>
                         <View style={styles.jt}>
-                            <TouchableOpacity style={styles.button} onPress={() =>{this.props.resetQuiz(); this.props.navigation.navigate('DeckList')}}>
+                            <TouchableOpacity style={styles.button} onPress={() =>{this.props.resetQuiz(); this.props.navigation.navigate('DeckPreview')}}>
+
+                                <Text style={styles.buttonText}>Reset quiz</Text>
+
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.button} onPress={() =>{this.props.resetQuiz(); this.props.navigation.navigate('DeckPreview')}}>
 
                                 <Text style={styles.buttonText}>Back to Quiz list</Text>
 

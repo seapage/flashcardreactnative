@@ -1,19 +1,31 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Animated } from 'react-native';
 import { connect } from 'react-redux';
 import { setCurTitle } from '../redux/actionLoadData.js';
 
 class LiPos extends React.Component {
+
+    state={bounceValue: new Animated.Value(1)}
+
     render() {
+        const { bounceValue } = this.state
+
+
         return (
                             <View>
                                 <TouchableOpacity style={styles.deckListLi} onPress={()=>{
+                                    Animated.sequence([
+                                                  Animated.timing(bounceValue, { duration: 1000, toValue: 3}),
+                                                  Animated.spring(bounceValue, { toValue: 1, friction: 4})
+                                                ]).start();
                                     this.props.setTitle(this.props.titleProps,this.props.cardsProps);
-                                    this.props.navigation.navigate('DeckPreview')}
+                                    setTimeout(()=>{this.props.navigation.navigate('DeckPreview')},1200);
+                                }}>
 
-                                }>
-
-                                    <Text style={styles.deckListLiText}>{this.props.titleProps}</Text>
+                                              <Animated.Text
+                                                style={[styles.deckListLiText, {transform: [{scale: bounceValue}]}]}>
+                                                  {this.props.titleProps}
+                                              </Animated.Text>
                                     <Text>{this.props.cardsProps.length} Cards</Text>
 
 

@@ -17,13 +17,13 @@ class NewDeck extends React.Component {
         Keyboard.dismiss();
         if(this.state.text==""||this.state.text==null)
             return;
-        this.props.saveTitle(this.state.text);
+        this.props.saveTitleRedux(this.state.text);
         this.setState({
 
             text: ""
 
         })
-        this.props.navigation.navigate('DeckTab')
+        this.props.navigation.navigate('DeckPreview')
     }
 
     render() {
@@ -51,8 +51,6 @@ class NewDeck extends React.Component {
                             </View>
                             <View style={styles.jt}>
                                 <TouchableOpacity style={styles.button} onPress={()=>{
-
-                                    this.props.decks.map((item)=>{console.log("poz"+item.title)})
 
                                     this.saveTitle()}}>
 
@@ -128,7 +126,7 @@ const mapStateToProps = (state, ownProps)=>{
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return{
-        saveTitle: (title)=>dispatch(saveDeck(title))
+        saveTitleRedux: (title)=>dispatch(saveDeck(title))
     }
 }
 

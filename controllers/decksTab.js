@@ -27,7 +27,9 @@ const Stack = StackNavigator({
 })
 
 
+
 class DeckTab extends React.Component {
+
     render() {
         return (
             <Stack/>
@@ -36,6 +38,7 @@ class DeckTab extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps)=>{
+
     return {}
 };
 
