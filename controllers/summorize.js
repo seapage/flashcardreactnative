@@ -3,7 +3,7 @@ import { StyleSheet, Text, AppRegistry, View, TextInput, TouchableOpacity,Keyboa
 import { connect } from 'react-redux';
 import { HeaderBackButton } from 'react-navigation';
 import {Keyboard} from 'react-native'
-import { resetQuizD } from '../redux/actionLoadData.js';
+import { resetQuizD, resetQuiz } from '../redux/actionLoadData.js';
 
 class Summ extends React.Component {
 

@@ -45,7 +45,7 @@ class Quiz extends React.Component {
                                     <Text style={styles.ask}>Question: {this.props.question[(this.props.score.actualQuestion-1)].question}??</Text>
                                 )}
                                 </View>
-                            ):(<Text>""</Text>)}
+                            ):(<Text></Text>)}
                             <TouchableOpacity style={styles.button}  onPress={()=>{
 
 
@@ -184,10 +184,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state, ownProps)=>{
     questions=[];
-    state.decks.map((item)=>{
-
-        if(item.title == state.quiz.title)
-            item.questions.map((question)=>{questions.push(question)})
+    state.curCards.map((item)=>{
+        questions.push(item);
 
     })
     return{
