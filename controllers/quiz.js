@@ -3,6 +3,7 @@ import { StyleSheet, Text, AppRegistry, View, TextInput, TouchableOpacity,Keyboa
 import { connect } from 'react-redux';
 import { HeaderBackButton } from 'react-navigation';
 import { resetQuiz, wrongAnswer, correctAnswer, corA } from '../redux/actionLoadData.js';
+import { setLocalNotification } from '../notification.js';
 
 class Quiz extends React.Component {
 
@@ -64,6 +65,7 @@ class Quiz extends React.Component {
 
                                 if(this.props.score.actualQuestion==this.props.score.questions){
                                     this.props.corA();
+                                    setLocalNotification();
                                     this.props.navigation.navigate('Summ');
                                     return;
                                 }
